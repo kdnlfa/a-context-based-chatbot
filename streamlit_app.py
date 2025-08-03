@@ -1,3 +1,15 @@
+# SQLite兼容性处理 - 必须在所有其他导入之前
+import sys
+import sqlite3
+
+# 检查SQLite版本并尝试使用pysqlite3
+try:
+    # 尝试导入pysqlite3作为sqlite3的替代
+    import pysqlite3
+    sys.modules['sqlite3'] = pysqlite3
+except ImportError:
+    pass
+
 import streamlit as st
 import os
 from langchain_core.output_parsers import StrOutputParser
